@@ -1,35 +1,38 @@
 class Book:
-    def __int__(self,title,auther,isbn):
+    def __init__(self, title, author, isbn):
         self.title = title
-        self.auther = auther
+        self.author = author
         self.isbn = isbn
-    def __str__(self):
-        return f"Title: {self.title} ,Auther : {self.auther},ISBN : {self.isbn}"
-    
-class Library:
 
+    def __str__(self):
+        return f"Title: {self.title}, Author: {self.author}, ISBN: {self.isbn}"
+
+# Define the Library class
+class Library:
     def __init__(self):
         self.books = []
 
-    def Add_Book(self,book):
+    def add_book(self, book):
         self.books.append(book)
-        return f"Book {book.title} added to the Library"
+        print(f"Book '{book.title}' added to the library.")
 
-    def Remove_Book(self,isbn):
+    def remove_book(self, isbn):
         for book in self.books:
-            if self.books.isbn == isbn:
+            if book.isbn == isbn:
                 self.books.remove(book)
-                print(f"Book {book.title} removed from the Library")
-            else:
-                print("Book Not Found")
-    def Search_Book(self,title):
+                print(f"Book '{book.title}' removed from the library.")
+                return
+        print("Book not found.")
+
+    def search_book(self, title):
         found_books = [book for book in self.books if title.lower() in book.title.lower()]
         if found_books:
-            print("Search Found")
+            print("Search results:")
             for book in found_books:
                 print(book)
         else:
-            print("No Books Found")
+            print("No books found with that title.")
+
     def list_books(self):
         if self.books:
             print("Library Catalog:")
@@ -38,6 +41,7 @@ class Library:
         else:
             print("No books in the library.")
 
+# Define the user interface
 def main():
     library = Library()
     while True:
@@ -70,4 +74,4 @@ def main():
             print("Invalid choice. Please try again.")
 
 if __name__ == "__main__":
-    main()                                                        
+    main()
